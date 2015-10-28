@@ -24,5 +24,11 @@ $ cd docker-oraclelinux-ohs
 $ docker build --tag=$USER/oraclelinux-ohs .
 ```
 ## TODO
+
 - Get `OHS` installation zip file from Oracle
 - Start `OHS` when the image is run
+
+## References
+
+- [Oracle HTTP Server](http://www.oracle.com/technetwork/middleware/webtier/overview/index.html#OHS)
+- [Oracle Fusion Middleware Installation Guide for Oracle Web Tier](https://docs.oracle.com/middleware/11119/webtier/install-ohs/toc.htm)
