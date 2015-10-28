@@ -4,9 +4,9 @@ MAINTAINER Huhgawz <huhgawz@gmail.com>
 
 USER root
 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
-ENV LC_ALL C
+ENV LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8 \
+    LC_ALL=C
 
 RUN yum install -y compat-libstdc++-33 cpp gcc gcc-c++ glibc-devel glibc-headers ksh libaio libaio-devel make sysstat && \
     yum clean all && \
