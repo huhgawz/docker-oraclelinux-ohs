@@ -39,7 +39,7 @@ ENV ORACLE_INSTANCE /oracle/Middleware/Oracle_WT1/instances/instance1
 
 RUN source /oracle/.bashrc && \
     cd /tmp/ohs/Disk1 && \
-    ./runInstaller -silent -waitforcompletion -response /tmp/ohs.rsp && \
+    ./runInstaller -silent -waitforcompletion -force -ignoreSysPrereqs -response /tmp/ohs.rsp && \
     cd /oracle/Middleware/Oracle_WT1/opmn/bin && \
     ./opmnctl stopall
 
