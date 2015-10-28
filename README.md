@@ -24,8 +24,8 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 
 ## TODO
 
-- Get `OHS` installation zip file via `wget` or `curl`
-- Start `OHS` when the image is running
+- Get `OHS` zip installation file via `wget` or `curl`?
+- Automatically start `OHS` when the image is run
 - Expose volume for configuration files
 
 ## References
