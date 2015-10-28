@@ -27,6 +27,7 @@ $ docker build --tag=$USER/oraclelinux-ohs .
 
 - Get `OHS` installation zip file from Oracle
 - Start `OHS` when the image is run
+- Make possible to set an external configuration file
 
 ## References
 
