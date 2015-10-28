@@ -15,9 +15,9 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 6. Clone this repo: `$ git clone https://github.com/huhgawz/docker-oraclelinux-ohs.git && cd docker-oraclelinux-ohs`
 7. Move downloded zip file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip  .`
 8. Update the value of the [OHS_VERSION](https://github.com/huhgawz/docker-oraclelinux-ohs/blob/master/Dockerfile#L15) environment variable accordingly: `$ vi Dockerfile`
-9. Build the image: `$ docker build --rm=true --tag=oraclelinux-ohs .`
-10. Run a container: `$ docker run -d -p 9000:7777 --name ohs oraclelinux-ohs`
-11. Create a new Bash session in the running container: `$ docker exec -it ohs bash` 
+9. Build the image: `$ docker build --rm --tag=oraclelinux-ohs .`
+10. Run a container: `$ docker run --detach --publish 9000:7777 --name ohs oraclelinux-ohs`
+11. Create a new Bash session in the running container: `$ docker exec --interactive -tty ohs bash` 
 12. In the docker container, start `OHS`: `$ ./oracle/Middleware/Oracle_WT1/opmn/bin/opmnctl startall` 
 
 ## TODO
