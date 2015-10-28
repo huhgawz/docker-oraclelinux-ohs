@@ -1,5 +1,7 @@
 # huhgawz/oraclelinux-ohs
 
+**NOTICE: THIS IS A WORK IN PROGRESS. DO NOT USE IT UNTIL THIS NOTICE IS REMOVED. THIS NOTICE WILL BE REMOVED ONCE THIS IMAGE WOKS PERFECTLY.**
+
 ## Introduction
 
 Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
@@ -22,5 +24,5 @@ $ cd docker-oraclelinux-ohs
 $ docker build --tag=$USER/oraclelinux-ohs .
 ```
 ## TODO
-
-- Run `OHS` when image is run
+- Get `OHS` installation zip file from Oracle
+- Start `OHS` when the image is run
