@@ -14,7 +14,9 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 4. In the **Web Tier 11gR1 - 11.1.x.x** combo box, select the **Linux 64-bit** option
 5. Click the **Download File** button and save the file at the folder in which you git cloned this repo (i.e. `docker-oracle-linux-ohs/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip`)
 6. Update the value of the [OHS_VERSION](https://github.com/huhgawz/docker-oraclelinux-ohs/blob/master/Dockerfile#L15) environment variable accordingly: `$ vi Dockerfile`
-7. Build the image: `$ docker build --tag=oraclelinux-ohs .`
+7. Build the image: `$ docker build --rm=true --tag=oraclelinux-ohs .`
+8. Run a container: `$ docker run -it -p 9000:7777 --name ohs <IMAGE-ID> /bin/bash`
+9. In the docker container, start `OHS`: `$ ./oracle/Middleware/Oracle_WT1/opmn/bin/opmnctl startall` 
 
 ## TODO
 
