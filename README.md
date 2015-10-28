@@ -22,7 +22,7 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 
 - Get `OHS` installation zip file via `wget` or `curl`
 - Start `OHS` when the image is run
-- Make possible to set external configuration files via [docker volumes](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume)
+- Expose volume for configuration files
 
 ## References
 
