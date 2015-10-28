@@ -8,19 +8,20 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 
 ## Installation
 
-1. Go to [Oracle Web Tier Downloads](http://www.oracle.com/technetwork/middleware/webtier/downloads/index.html)
-2. Click the **Accept License Agreement** radio button
-3. In the **Web Tier 11gR1 - 11.1.x.x** combo box, select the **Linux 64-bit** option
-4. Click the **Download File** button
-6. Clone this repo: `$ git clone https://github.com/huhgawz/docker-oraclelinux-ohs.git && cd docker-oraclelinux-ohs`
-7. Move downloded zip file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip  .`
-8. Update the value of the [OHS_VERSION](https://github.com/huhgawz/docker-oraclelinux-ohs/blob/master/Dockerfile#L15) environment variable accordingly: `$ vi Dockerfile`
-9. Build the image: `$ docker build --rm --tag=oraclelinux-ohs .`
-10. Run a container: `$ docker run --detach --publish 9000:7777 --name ohs oraclelinux-ohs`
-11. Create a new Bash session in the running container: `$ docker exec --interactive -tty ohs bash` 
-12. In the docker container, start `OHS`: `$ ./oracle/Middleware/Oracle_WT1/opmn/bin/opmnctl startall` 
-13. Get the IP addres of the running container: `$ docker inspect --format='{{.NetworkSettings.IPAddress}}' ohs`
-14. Open the following URL in a browser: [http://localhost:9000]()
+1. Download `OHS` zip installation file
+  1. Go to [Oracle Web Tier Downloads](http://www.oracle.com/technetwork/middleware/webtier/downloads/index.html)
+  2. Click the **Accept License Agreement** radio button
+  3. In the **Web Tier 11gR1 - 11.1.x.x** combo box, select the **Linux 64-bit** option
+  4. Click the **Download File** button
+2. Clone this repo: `$ git clone https://github.com/huhgawz/docker-oraclelinux-ohs.git && cd docker-oraclelinux-ohs`
+3. Move `OHS` zip installation file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip  .`
+4. Update the value of the [OHS_VERSION](https://github.com/huhgawz/docker-oraclelinux-ohs/blob/master/Dockerfile#L15) environment variable accordingly: `$ vi Dockerfile`
+5. Build the image: `$ docker build --rm --tag=oraclelinux-ohs .`
+6. Run a container: `$ docker run --detach --publish 9000:7777 --name ohs oraclelinux-ohs`
+7. Create a new Bash session in the running container: `$ docker exec --interactive -tty ohs bash` 
+8. In the docker container, start `OHS`: `$ ./oracle/Middleware/Oracle_WT1/opmn/bin/opmnctl startall` 
+9. Get the IP addres of the running container: `$ docker inspect --format='{{.NetworkSettings.IPAddress}}' ohs`
+10. Open the following URL in a browser: [http://localhost:9000]()
 
 ## TODO
 
