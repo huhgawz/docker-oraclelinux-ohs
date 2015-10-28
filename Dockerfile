@@ -21,14 +21,14 @@ RUN unzip /tmp/ofm_webtier_linux_${OHS_VERSION}_64_disk1_1of1.zip -d /tmp/ohs &&
 
 ENV OHS_VERSION ""
 
-COPY silent.rsp /tmp/
+COPY ohs.rsp /tmp/
 COPY oraInst.loc /etc/
 COPY sysctl.conf /etc/
 
 RUN useradd -d /oracle oracle && \
     echo "oracle:oracle" | chpasswd && \
     chown -R oracle:oracle /tmp/ohs && \
-    chown oracle:oracle /tmp/silent.rsp && \
+    chown oracle:oracle /tmp/ohs.rsp && \
     chown oracle:oracle /etc/oraInst.loc && \
     chmod 664 /etc/oraInst.loc && \
     echo "ORACLE_INSTANCE=/oracle/Middleware/Oracle_WT1/instances/instance1" >> /oracle/.bashrc
@@ -39,13 +39,13 @@ ENV ORACLE_INSTANCE /oracle/Middleware/Oracle_WT1/instances/instance1
 
 RUN source /oracle/.bashrc && \
     cd /tmp/ohs/Disk1 && \
-    ./runInstaller -silent -waitforcompletion -response /tmp/silent.rsp && \
+    ./runInstaller -silent -waitforcompletion -response /tmp/ohs.rsp && \
     cd /oracle/Middleware/Oracle_WT1/opmn/bin && \
     ./opmnctl stopall
 
 USER root
 
-RUN rm -rf /tmp/ohs /tmp/silent.rsp /tmp/OraInstall* /tmp/hsperfdata_oracle /tmp/tmpInvPtrLoc*
+RUN rm -rf /tmp/ohs /tmp/ohs.rsp /tmp/OraInstall* /tmp/hsperfdata_oracle /tmp/tmpInvPtrLoc*
 
 EXPOSE 7777
 
