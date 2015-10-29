@@ -19,7 +19,7 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 4. Update the value of the [OHS_VERSION](Dockerfile#L15) environment variable accordingly: `$ vi Dockerfile`
 5. Build the image: `$ docker build --rm --tag=oraclelinux-ohs .`
 6. Run a container: `$ docker run --detach --publish 9000:7777 --name ohs oraclelinux-ohs`
-7. Create a new Bash session in the running container: `$ docker exec --interactive -tty ohs bash` 
+7. Create a new Bash session in the running container: `$ docker exec --interactive --tty ohs bash` 
 8. In the docker container, start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall` 
 9. Get the IP addres of the running container: `$ docker inspect --format='{{.NetworkSettings.IPAddress}}' ohs`
 10. Open the following URL in a browser: [http://localhost:9000]()
