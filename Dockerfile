@@ -23,7 +23,7 @@ ENV OHS_VERSION ""
 
 COPY ohs.rsp /tmp/
 COPY oraInst.loc /etc/
-COPY sysctl.conf /etc/
+COPY sysctl.conf /etc
 
 RUN useradd -d /oracle oracle && \
     echo "oracle:oracle" | chpasswd && \
@@ -47,6 +47,13 @@ USER root
 
 RUN rm -rf /tmp/ohs /tmp/ohs.rsp /tmp/OraInstall* /tmp/hsperfdata_oracle /tmp/tmpInvPtrLoc*
 
+COPY entrypoint.sh /oracle/
+
+RUN chown oracle:oracle /oracle/entrypoint.sh && \
+    chmod +x /oracle/entrypoint.sh
+
 EXPOSE 7777
 
 USER oracle
+
+#ENTRYPOINT ["/oracle/entrypoint.sh"]
