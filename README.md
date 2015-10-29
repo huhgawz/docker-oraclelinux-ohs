@@ -41,3 +41,6 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 - [How to download Oracle software using wget or curl](http://www.pythian.com/blog/how-to-download-oracle-software-using-wget-or-curl/)
 - [Download Oracle using wget, A tiny HowTo](http://nayyares.blogspot.com/2008/07/download-oracle-using-wget-tiny-howto.html)
 - [Downlaod Oracle software with wget](http://nayyares.blogspot.com/2008/07/download-oracle-using-wget-tiny-howto.html)
+- [Configure Oracle HTTP Server (OHS) on port 80 / 443](http://onlineappsdba.com/index.php/2013/05/30/configure-oracle-http-server-ohs-on-port-80-443/)
+- [Getting Started with Oracle HTTP Server](http://docs.oracle.com/cd/E16764_01/web.1111/e10144/getstart.htm#BEHFGCAE)
+- [get_files.sh gist](https://gist.github.com/jpiwowar/6725209#file-get_files-sh)
