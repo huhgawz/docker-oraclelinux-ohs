@@ -23,7 +23,7 @@ ENV OHS_VERSION ""
 
 COPY ohs.rsp /tmp/
 COPY oraInst.loc /etc/
-COPY sysctl.conf /etc
+COPY sysctl.conf /etc/
 
 RUN useradd -d /oracle oracle && \
     echo "oracle:oracle" | chpasswd && \
