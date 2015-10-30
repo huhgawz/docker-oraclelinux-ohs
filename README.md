@@ -21,7 +21,7 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 6. Run a container: `$ docker run --interactive --tty --publish 9000:7777 --name ohs oraclelinux-ohs bash`
 7. In the docker container, start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall` 
 8. Get the IP address of the running container: `$ docker inspect ohs | grep IP`
-9. Open the following URL in a browser: http://<CONTAINER-IP-ADDRESS>:9000
+9. Open the following URL in a browser: http://\<ohs-container-ip-addres\>:9000
 
 ## TODO
 
@@ -35,7 +35,7 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 - [Docker run reference](https://docs.docker.com/reference/run/)
 - [Docker exec](https://docs.docker.com/reference/commandline/exec/)
 - [Oracle HTTP Server](http://www.oracle.com/technetwork/middleware/webtier/overview/index.html#OHS)
-- [Oracle Web Tier Downloads](http://www.oracle.com/technetwork/middleware/webtier/downloads/index.html)
+- [Oracle Web Tier Downloads](http://www.oracle.com/technetwork/middleware/webtier/downloads/)
 - [Oracle Fusion Middleware Installation Guide for Oracle Web Tier](https://docs.oracle.com/middleware/11119/webtier/install-ohs/toc.htm)
 - [Oracle Fusion Middleware Installation Planning Guide - Silent Oracle Fusion Middleware Installation and Deinstallation](https://docs.oracle.com/middleware/11119/core/ASINS/silent_install.htm#ASINS235)
 - [Installing and Configuring the Oracle HTTP Server](http://docs.oracle.com/html/E12405_15/wcadm_security_sso.htm#CEGEJJBE)
