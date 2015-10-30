@@ -18,16 +18,15 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 3. Move `OHS` zip installation file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip  .`
 4. Update the value of the [OHS_VERSION](Dockerfile#L15) environment variable accordingly: `$ vi Dockerfile`
 5. Build the image: `$ docker build --rm --tag=oraclelinux-ohs .`
-6. Run a container: `$ docker run --detach --publish 9000:7777 --name ohs oraclelinux-ohs`
-7. Create a new Bash session in the running container: `$ docker exec --interactive --tty ohs bash` 
-8. In the docker container, start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall` 
-9. Get the IP address of the running container: `$ docker inspect --format='{{.NetworkSettings.IPAddress}}' ohs`
-10. Open the following URL in a browser: [http://localhost:9000]()
+6. Run a container: `$ docker run --interactive --tty --publish 9000:7777 --name ohs oraclelinux-ohs bash`
+7. In the docker container, start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall` 
+8. Get the IP address of the running container: `$ docker inspect ohs | grep IP`
+9. Open the following URL in a browser: http://<CONTAINER-IP-ADDRESS>:9000
 
 ## TODO
 
 - Get `OHS` zip installation file via `wget` or `curl`?
-- Automatically start `OHS` when a container is run
+- Automatically start `OHS` when a container is run (i.e. `$ docker run --detach --publish 9000:777 --name ohs`)
 - Expose volume for configuration files
 
 ## References
