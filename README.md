@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**NOTICE: THIS PROJECT IS A WORK IN PROGRESS. THIS NOTICE WILL BE REMOVED ONCE THIS PROJECT IS IN GOOD SHAPE. CONTRIBUTIONS ARE WELCOME.**
+> NOTE: THIS PROJECT IS IN ACTIVE DEVELOPMENT. SOME THINGS CAN CHANGE RADICALLY.
 
 Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 
@@ -18,10 +18,10 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 3. Move `OHS` zip installation file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip  .`
 4. Update the value of the [OHS_VERSION](Dockerfile#L15) environment variable accordingly: `$ vi Dockerfile`
 5. Build the image: `$ docker build --rm --tag=oraclelinux-ohs .` (behind a proxy: `$ docker build --build-arg http_proxy=$HTTP_PROXY --rm --tag=oraclelinux-ohs .` )
-6. Run a container: `$ docker run --interactive --tty --publish 9000:7777 --name ohs oraclelinux-ohs bash`
-7. In the docker container, start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall` 
+6. Run a container: `$ docker run --interactive --tty --publish 9777:7777 --name ohs oraclelinux-ohs`
+7. In the docker container, start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall &`
 8. Get the IP address of the running container: `$ docker inspect ohs | grep IP`
-9. Open the following URL in a browser: http://\<ohs-container-ip-address\>:9000
+9. Open the following URL in a browser: http://\<ohs-container-ip-address\>:9777
 
 ## TODO
 
@@ -34,6 +34,7 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 - [Docker run](https://docs.docker.com/reference/commandline/run/)
 - [Docker run reference](https://docs.docker.com/reference/run/)
 - [Docker exec](https://docs.docker.com/reference/commandline/exec/)
+- [Uninstall Docker Toolbox Mac OS X](https://docs.docker.com/v1.8/installation/mac/#uninstall-docker-toolbox)
 - [Oracle HTTP Server](http://www.oracle.com/technetwork/middleware/webtier/overview/index.html#OHS)
 - [Oracle Web Tier Downloads](http://www.oracle.com/technetwork/middleware/webtier/downloads/)
 - [Oracle Fusion Middleware Installation Guide for Oracle Web Tier](https://docs.oracle.com/middleware/11119/webtier/install-ohs/toc.htm)
