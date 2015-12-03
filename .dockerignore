@@ -1,5 +1,7 @@
+.editorconfig
 .git
 .gitignore
 .idea
+entrypoint.sh
 MIT-LICENSE
 README.md
