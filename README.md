@@ -6,6 +6,10 @@
 
 Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 
+## Requirements
+
+- [Docker 1.9.x](http://docs.docker.com/engine/installation/mac/)
+
 ## Installation
 
 1. Download `OHS`:
@@ -13,20 +17,25 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
   2. Click the **Accept License Agreement** radio button
   3. In the **Web Tier 11gR1 - 11.1.x.x** combo box, select the **Linux 64-bit** option
   4. Click the **Download File** button
-  5. Save the zip file in `Downloads` folder (i.e. `~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip`)
-2. Clone this repo: `$ git clone https://github.com/huhgawz/docker-oraclelinux-ohs.git && cd docker-oraclelinux-ohs`
-3. Move `OHS` zip installation file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip  .`
-4. Update the value of the [OHS_VERSION](Dockerfile#L15) environment variable accordingly: `$ vi Dockerfile`
-5. Build the image: `$ docker build --rm --tag=oraclelinux-ohs .` (behind a proxy: `$ docker build --build-arg http_proxy=$HTTP_PROXY --rm --tag=oraclelinux-ohs .` )
-6. Run a container: `$ docker run --interactive --tty --publish 9777:7777 --name ohs oraclelinux-ohs`
-7. In the docker container, start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall &`
-8. Get the IP address of the running container: `$ docker inspect ohs | grep IP`
-9. Open the following URL in a browser: http://\<ohs-container-ip-address\>:9777
+  5. Save the file in `Downloads` folder (i.e. `~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip`)
+2. Clone the repo: `$ git clone https://github.com/huhgawz/docker-oraclelinux-ohs.git && cd docker-oraclelinux-ohs`
+3. Move `OHS` file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip .`
+4. Build the image:
+  - `$ docker build --rm --tag=$USER/oraclelinux-ohs .`
+    - It is possible to set a proxy: `$ docker build --build-arg http_proxy=$HTTP_PROXY --rm --tag=$USER/oraclelinux-ohs .`
+    - It is also possible to set `OHS` version: `$ docker build --rm  --build-arg OHS_VERSION=11.1.1.9.0 --tag=$USER/oraclelinux-ohs .`
+5. Run a container: `$ docker run --interactive --tty --publish 9777:7777 --name ohs $USER/oraclelinux-ohs`
+6. In the running container, start `OHS`: `$ ./opmnctl startall`
+7. Verify that `OHS` is running:
+  - Get the IP address:
+    - In Mac OS: `$ docker-machine env default | grep HOST`
+    - In Linux: `$ docker inspect ohs | grep IP`
+  - Open this URL in a browser: http://\<ip-address\>:9777
 
 ## TODO
 
 - Get `OHS` zip installation file via `wget` or `curl`?
-- Automatically start `OHS` when a container is run (i.e. `$ docker run --detach --publish 9000:777 --name ohs`)
+- Automatically start `OHS` when a container is run (i.e. `$ docker run --detach --publish 9777:7777 --name ohs $USER/oraclelinux-ohs`)
 - Expose volume for configuration files
 
 ## References
@@ -34,7 +43,7 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 - [Docker run](https://docs.docker.com/reference/commandline/run/)
 - [Docker run reference](https://docs.docker.com/reference/run/)
 - [Docker exec](https://docs.docker.com/reference/commandline/exec/)
-- [Uninstall Docker Toolbox Mac OS X](https://docs.docker.com/v1.8/installation/mac/#uninstall-docker-toolbox)
+- [Mac OS X - Uninstall Docker Toolbox](http://docs.docker.com/engine/installation/mac/#uninstall-docker-toolbox)
 - [Oracle HTTP Server](http://www.oracle.com/technetwork/middleware/webtier/overview/index.html#OHS)
 - [Oracle Web Tier Downloads](http://www.oracle.com/technetwork/middleware/webtier/downloads/)
 - [Oracle Fusion Middleware Installation Guide for Oracle Web Tier](https://docs.oracle.com/middleware/11119/webtier/install-ohs/toc.htm)
