@@ -23,14 +23,12 @@ RUN yum install -y \
     && yum clean all \
     && rm -rf /var/cache/yum/*
 
-ENV DOCKER_BUILD_OHS_VERSION 11.1.1.9.0
+ARG OHS_VERSION=11.1.1.9.0
 
-COPY ofm_webtier_linux_${DOCKER_BUILD_OHS_VERSION}_64_disk1_1of1.zip /tmp/
+COPY ofm_webtier_linux_${OHS_VERSION}_64_disk1_1of1.zip /tmp/
 
-RUN unzip /tmp/ofm_webtier_linux_${DOCKER_BUILD_OHS_VERSION}_64_disk1_1of1.zip -d /tmp/ohs \
-    && rm -f /tmp/ofm_webtier_linux_${DOCKER_BUILD_OHS_VERSION}_64_disk1_1of1.zip
-
-ENV DOCKER_BUILD_OHS_VERSION ""
+RUN unzip /tmp/ofm_webtier_linux_${OHS_VERSION}_64_disk1_1of1.zip -d /tmp/ohs \
+    && rm -f /tmp/ofm_webtier_linux_${OHS_VERSION}_64_disk1_1of1.zip
 
 COPY ohs.rsp /tmp/
 COPY oraInst.loc /etc/
@@ -50,10 +48,13 @@ USER oracle
 
 ENV ORACLE_INSTANCE /oracle/Middleware/Oracle_WT1/instances/instance1
 
-RUN cd /tmp/ohs/Disk1 \
-    && ./runInstaller -silent -waitforcompletion -force -ignoreSysPrereqs -response /tmp/ohs.rsp \
-    && cd /oracle/Middleware/Oracle_WT1/opmn/bin \
-    && ./opmnctl stopall
+WORKDIR /tmp/ohs/Disk1
+
+RUN ./runInstaller -silent -waitforcompletion -force -ignoreSysPrereqs -response /tmp/ohs.rsp
+
+WORKDIR /oracle/Middleware/Oracle_WT1/opmn/bin
+
+RUN ./opmnctl stopall
 
 USER root
 
@@ -64,16 +65,16 @@ RUN rm -rf \
     /tmp/hsperfdata_oracle \
     /tmp/tmpInvPtrLoc*
 
-COPY entrypoint.sh /oracle/
+#COPY entrypoint.sh /oracle/
 
-RUN chown oracle:oracle /oracle/entrypoint.sh \
-    && chmod +x /oracle/entrypoint.sh
+#RUN chown oracle:oracle /oracle/entrypoint.sh \
+#    && chmod +x /oracle/entrypoint.sh
 
 EXPOSE 7777
 
 USER oracle
 
-WORKING_DIR /oracle/Middleware/Oracle_WT1/opmn/bin
+WORKDIR /oracle/Middleware/Oracle_WT1/opmn/bin
 
 ENTRYPOINT ["/bin/bash"]
 #ENTRYPOINT ["/oracle/entrypoint.sh"]
