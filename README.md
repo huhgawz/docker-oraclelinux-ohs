@@ -22,8 +22,8 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 3. Move `OHS` file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip .`
 4. Build the image:
   - `$ docker build --rm --tag=oraclelinux-ohs .`
-    - It is possible to set a proxy: `$ docker build --rm --build-arg http_proxy=$HTTP_PROXY --tag=oraclelinux-ohs .`
-    - It is also possible to set `OHS` version: `$ docker build --rm  --build-arg OHS_VERSION=11.1.1.9.0 --tag=oraclelinux-ohs .`
+    - To set a proxy: `$ docker build --rm --build-arg http_proxy=$HTTP_PROXY --tag=oraclelinux-ohs .`
+    - To set `OHS` version: `$ docker build --rm  --build-arg OHS_VERSION=11.1.1.9.0 --tag=oraclelinux-ohs .`
 5. Run a container: `$ docker run --interactive --tty --publish 9777:7777 --name ohs oraclelinux-ohs`
 6. In the running container:
   - Start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall`
