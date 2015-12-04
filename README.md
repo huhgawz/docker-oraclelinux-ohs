@@ -17,18 +17,20 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
   2. Click the **Accept License Agreement** radio button
   3. In the **Web Tier 11gR1 - 11.1.x.x** combo box, select the **Linux 64-bit** option
   4. Click the **Download File** button
-  5. Save the file in `Downloads` folder (i.e. `~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip`)
+  5. Save the file in the `Downloads` folder (i.e. `~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip`)
 2. Clone the repo: `$ git clone https://github.com/huhgawz/docker-oraclelinux-ohs.git && cd docker-oraclelinux-ohs`
 3. Move `OHS` file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip .`
 4. Build the image:
-  - `$ docker build --rm --tag=$USER/oraclelinux-ohs .`
-    - It is possible to set a proxy: `$ docker build --rm --build-arg http_proxy=$HTTP_PROXY --tag=$USER/oraclelinux-ohs .`
-    - It is also possible to set `OHS` version: `$ docker build --rm  --build-arg OHS_VERSION=11.1.1.9.0 --tag=$USER/oraclelinux-ohs .`
-5. Run a container: `$ docker run --interactive --tty --publish 9777:7777 --name ohs $USER/oraclelinux-ohs`
-6. In the running container, start `OHS`: `$ ./opmnctl startall`
+  - `$ docker build --rm --tag=oraclelinux-ohs .`
+    - It is possible to set a proxy: `$ docker build --rm --build-arg http_proxy=$HTTP_PROXY --tag=oraclelinux-ohs .`
+    - It is also possible to set `OHS` version: `$ docker build --rm  --build-arg OHS_VERSION=11.1.1.9.0 --tag=oraclelinux-ohs .`
+5. Run a container: `$ docker run --interactive --tty --publish 9777:7777 --name ohs oraclelinux-ohs`
+6. In the running container:
+  - Start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall`
+  - Use the escape sequence `CTRL-P` + `CTRL-Q` in order to detach the tty without exiting the shell. The container will continue to exist in a stopped state once exited (see [Docker Running an Interactive Shell](http://docs.docker.com/engine/userguide/basics/#running-an-interactive-shell)).
 7. Verify that `OHS` is running:
   - Get the IP address:
-    - In Mac OS: `$ docker-machine env default | grep HOST`
+    - In Mac OS: `$ docker-machine ip default`
     - In Linux: `$ docker inspect ohs | grep IP`
   - Open this URL in a browser: http://\<ip-address\>:9777
 
