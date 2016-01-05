@@ -2,8 +2,6 @@
 
 ## Introduction
 
-> NOTE: THIS PROJECT IS IN ACTIVE DEVELOPMENT. SOME THINGS CAN CHANGE RADICALLY.
-
 Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
 
 ## Requirements
@@ -18,21 +16,34 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
   3. In the **Web Tier 11gR1 - 11.1.x.x** combo box, select the **Linux 64-bit** option
   4. Click the **Download File** button
   5. Save the file in the `Downloads` folder (i.e. `~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip`)
-2. Clone the repo: `$ git clone https://github.com/huhgawz/docker-oraclelinux-ohs.git && cd docker-oraclelinux-ohs`
+2. Clone this repo: `$ git clone https://github.com/huhgawz/docker-oraclelinux-ohs.git && cd docker-oraclelinux-ohs`
 3. Move `OHS` file to the cloned repo: `$ mv ~/Downloads/ofm_webtier_linux_11.1.x.x.x_64_disk1_1of1.zip .`
-4. Build the image:
+4. Build an image:
   - `$ docker build --rm --tag=oraclelinux-ohs .`
     - To set a proxy: `$ docker build --rm --build-arg http_proxy=$HTTP_PROXY --tag=oraclelinux-ohs .`
     - To set `OHS` version: `$ docker build --rm  --build-arg OHS_VERSION=11.1.1.9.0 --tag=oraclelinux-ohs .`
-5. Run a container: `$ docker run --interactive --tty --publish 9777:7777 --name ohs oraclelinux-ohs`
+5. Run a container: `$ docker run --interactive --tty --publish 7777:7777 --name ohs oraclelinux-ohs`
 6. In the running container:
-  - Start `OHS`: `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall`
-  - Use the escape sequence `CTRL-P` + `CTRL-Q` in order to detach the tty without exiting the shell. The container will continue to exist in a stopped state once exited (see [Docker Running an Interactive Shell](http://docs.docker.com/engine/userguide/basics/#running-an-interactive-shell)).
-7. Verify that `OHS` is running:
-  - Get the IP address:
-    - In Mac OS: `$ docker-machine ip default`
-    - In Linux: `$ docker inspect ohs | grep IP`
-  - Open this URL in a browser: http://\<ip-address\>:9777
+  - Start `OHS`:
+    - `$ cd /oracle/Middleware/Oracle_WT1/opmn/bin && ./opmnctl startall`
+    - `$ ps aux`
+      You should see an output similar to this one:
+      ```
+      USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+      oracle       1  0.1  0.0  11764  2932 ?        Ss   17:14   0:00 /bin/bash
+      oracle      21  0.0  0.1  72796 10644 ?        Ss   17:14   0:00 /oracle/Middleware/Oracle_WT1/opmn/bin/opmn -d
+      oracle      22  1.1  0.3 1179228 27404 ?       Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/opmn/bin/opmn -d
+      oracle      40  1.9  0.4 150984 35108 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      oracle      48  0.0  0.0  30532  2952 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/odl_rotatelogs -l /oracle/Middleware/Oracle_WT1/instances/instance1/diagnostics/logs/OHS/ohs1/ohs1-%Y
+      oracle      49  0.0  0.0  30532  1856 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/odl_rotatelogs /oracle/Middleware/Oracle_WT1/instances/instance1/diagnostics/logs/OHS/ohs1/access_log
+      oracle      50  0.0  0.2 148848 20108 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      oracle      51  0.0  0.0  30532  1896 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/odl_rotatelogs -l -h:/oracle/Middleware/Oracle_WT1/instances/instance1/config/OHS/ohs1/component_even
+      oracle      52  0.0  0.2 282576 23544 ?        Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      oracle      54  0.0  0.3 454776 29536 ?        Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      oracle      56  0.0  0.3 520312 29428 ?        Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      ``
+    - Use the escape sequence `CTRL-P` + `CTRL-Q` in order to detach the tty without exiting the shell. The container will continue to exist in a stopped state once exited (see [Docker Running an Interactive Shell](http://docs.docker.com/engine/userguide/basics/#running-an-interactive-shell)).
+7. Verify that `OHS` is running by opening this URL in a browser: http://localhost:7777
 
 ## TODO
 
