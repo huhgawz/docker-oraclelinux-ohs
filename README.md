@@ -32,16 +32,16 @@ Dockerized `Oracle Linux` with `Oracle HTTP Server` (`OHS`).
       USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
       oracle       1  0.1  0.0  11764  2932 ?        Ss   17:14   0:00 /bin/bash
       oracle      21  0.0  0.1  72796 10644 ?        Ss   17:14   0:00 /oracle/Middleware/Oracle_WT1/opmn/bin/opmn -d
-      oracle      22  1.1  0.3 1179228 27404 ?       Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/opmn/bin/opmn -d
-      oracle      40  1.9  0.4 150984 35108 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      oracle      22  1.1  0.3  79228 27404 ?       Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/opmn/bin/opmn -d
+      oracle      40  1.9  0.4  15098 35108 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
       oracle      48  0.0  0.0  30532  2952 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/odl_rotatelogs -l /oracle/Middleware/Oracle_WT1/instances/instance1/diagnostics/logs/OHS/ohs1/ohs1-%Y
       oracle      49  0.0  0.0  30532  1856 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/odl_rotatelogs /oracle/Middleware/Oracle_WT1/instances/instance1/diagnostics/logs/OHS/ohs1/access_log
-      oracle      50  0.0  0.2 148848 20108 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      oracle      50  0.0  0.2  14884 20108 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
       oracle      51  0.0  0.0  30532  1896 ?        S    17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/odl_rotatelogs -l -h:/oracle/Middleware/Oracle_WT1/instances/instance1/config/OHS/ohs1/component_even
-      oracle      52  0.0  0.2 282576 23544 ?        Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
-      oracle      54  0.0  0.3 454776 29536 ?        Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
-      oracle      56  0.0  0.3 520312 29428 ?        Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
-      ``
+      oracle      52  0.0  0.2  28257 23544 ?        Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      oracle      54  0.0  0.3  45477 29536 ?        Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      oracle      56  0.0  0.3  52031 29428 ?        Sl   17:14   0:00 /oracle/Middleware/Oracle_WT1/ohs/bin/httpd.worker -DSSL
+      ```
     - Use the escape sequence `CTRL-P` + `CTRL-Q` in order to detach the tty without exiting the shell. The container will continue to exist in a stopped state once exited (see [Docker Running an Interactive Shell](http://docs.docker.com/engine/userguide/basics/#running-an-interactive-shell)).
 7. Verify that `OHS` is running by opening this URL in a browser: http://localhost:7777
 
